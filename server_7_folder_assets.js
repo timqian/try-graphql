@@ -1,28 +1,28 @@
 /**
- * modelo folder asset usage
+ * modelo usage example
  * Sample query
-{
-  folderAssets(projectId: "sampleId") {
-    folderId,
-    folderPath,
-    assets {
-        id,
-        name,
-        type,
+    {
+        assetsInProject(projectId: "sampleId") {
+            folderId,
+            folderPath,
+            assets {
+                id,
+                name,
+                type,
+            }
+        }
     }
-  }
-}
  */
 
- // combine two requests: 1. /assets 2. /assets/assets
- // frontend decide what fileds to receive
+// combine two requests: 1. /assets 2. /assets/assets
+// frontend decide what fileds to receive
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const { graphql, buildSchema } = require('graphql');
 
 const schema = buildSchema(`
     type Query {
-        folderAssets(projectId: String!): [Folder]
+        assetsInProject(projectId: String!): [Folder]
     }
 
     type Folder {
@@ -58,7 +58,7 @@ async function getFolders(projectId) {
         folder.assets = assetsInFolders[i];
     });
 
-    return folders; 
+    return folders;
 }
 
 async function getAssets(folderId) {
@@ -73,14 +73,14 @@ async function getAssets(folderId) {
 }
 
 const root = {
-    folderAssets: ({projectId}) => getFolders(projectId)
+    assetsInProject: ({ projectId }) => getFolders(projectId)
 }
 
 var app = express();
 app.use('/graphql', graphqlHTTP({
-  schema: schema,
-  rootValue: root,
-  graphiql: true,
+    schema: schema,
+    rootValue: root,
+    graphiql: true,
 }));
 app.listen(4000);
 console.log('Running a GraphQL API server at http://localhost:4000/graphql');

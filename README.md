@@ -1,18 +1,17 @@
-# GraphQL: Way to structure your API endpoints
+# GraphQL: A new way to structure your API endpoints
 
-### Ask for what you need, get exactly that
-server_3
-
-### Get many resources in a single request
-server_4
-
-### Advantages with a type system 
+## Difference with rest API
 GraphQL APIs are organized in terms of types and fields, not endpoints. 
-- auto doc
-- auto ensure frontend only ask for whats possible 
-- auto provide clear error message
 
-## 2 concepts
+## Advantages
+1. With type system. *(Example: `server_1.js`)*
+    - auto doc
+    - auto ensure frontend only ask for whats possible 
+    - auto provide clear error message
+2. Ask for what you need, get exactly that. *(Example: `server_3.js`)*
+3. Get many resources in a single request. *(Example: `server_4.js`)*
 
-1. **Schema**: define `Query` and `Mutation` type (structure API endpoints) A description of your data model with an associated set of resolve methods that know how to fetch any data your application could ever need.
-2. **Resolver**: one function for one API endpoint
+
+## Two concepts to grasp
+1. **Schema**: A description of your data model
+2. **Resolver**: One function for one API endpoint defined in *Schema*
